@@ -56,7 +56,7 @@ const HotelsList = () => {
   const [filterParams, setFilterParams] = useState({
     limit: 30,
     rooms: 1,
-    adults: 1,
+    adults: 2,
     hotel_class: "4, 5",
     checkin: moment(new Date()).format("YYYY-MM-DD"),
     checkout: moment(new Date()).format("YYYY-MM-DD"),
@@ -207,105 +207,6 @@ const HotelsList = () => {
                 // CSS Classes Props
                 classProps="w-full rounded border-y border-r shadow px-4 py-2 border-l-8 border-l-red-600 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none"
               />
-              {/* --- */}
-            </div>
-            {/* --- */}
-
-            {/* Guests */}
-            <div className="w-full rounded border-y border-r shadow px-4 py-2 border-l-8 border-l-gray-500 relative">
-              {/* Click-enbaled Overlay, that toggles Guests Field */}
-              <div
-                className="absolute w-full h-full top-0 left-0 cursor-pointer bg-transparent z-10"
-                // On Click function sets 'guestsToggle' to true, hence opening the form field dropdown for Guests and adults
-                onClick={() => setGuestsToggle(true)}
-              />
-              {/* --- */}
-
-              <span className="absolute text-xs bg-white font-semibold px-2 -top-2 left-0">
-                Guests
-              </span>
-
-              {/* FilterParams 'rooms' and 'adults' properties displayed on input display */}
-              <p className="w-full">
-                {filterParams.rooms} room, {filterParams.adults} adults
-              </p>
-              {/* --- */}
-
-              <span className="absolute top-3 right-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                  />
-                </svg>
-              </span>
-
-              {/* Dropdown is displayed If Guests Toggle is Clicked, hence 'guestsToggle' set to true */}
-              {guestsToggle && (
-                <div className="absolute z-20 w-full left-0 top-12">
-                  <div className="h-4 w-4 bg-white shadow transform rotate-45 mx-auto -mb-2 border border-gray-200" />
-                  <div className="bg-white shadow-md w-full p-4 space-y-2 relative">
-                    {/* Close Button */}
-                    <p
-                      className="flex justify-end pb-2 relative"
-                      // On Click function sets 'guestsToggle' to false, hence closing the form field dropdown for Guests and adults
-                      onClick={() => setGuestsToggle(false)}
-                    >
-                      <svg
-                        className="h-4 w-4 block cursor-pointer"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </p>
-                    {/* --- */}
-
-                    {/* Rooms */}
-                    <div className="flex justify-between items-center">
-                      <p>Rooms</p>
-                      {/* Input Field for 'rooms' */}
-                      <Input
-                        type="number"
-                        name="rooms"
-                        value={filterParams}
-                        handleChange={handleChange}
-                        classProps="w-14 rounded border p-1 text-center focus:text-gray-700 focus:bg-white focus:outline-none"
-                      />
-                      {/* --- */}
-                    </div>
-                    {/* --- */}
-
-                    {/* Adults */}
-                    <div className="flex justify-between items-center">
-                      <p>Adults</p>
-                      {/* Input Field from 'adults' */}
-                      <Input
-                        type="number"
-                        name="adults"
-                        value={filterParams}
-                        handleChange={handleChange}
-                        classProps="w-14 rounded border p-1 text-center focus:text-gray-700 focus:bg-white focus:outline-none"
-                      />
-                      {/* --- */}
-                    </div>
-                    {/* --- */}
-                  </div>
-                </div>
-              )}
               {/* --- */}
             </div>
             {/* --- */}
