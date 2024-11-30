@@ -71,16 +71,13 @@ const HotelsList = () => {
     setFilterParams((prevState) => ({ ...prevState, [name]: e.target.value }));
   };
 
-  // Effect to fetch places for component from the getPlacesByLatLng endpoint and effect is reran on change of 'coordinates' or 'filterParams' state values
   useEffect(() => {
     let isMounted = true;
 
     let source = axios.CancelToken.source();
 
-    // Loading state is set to true while data is being fetched from endpoint
     setIsLoading(true);
 
-    // Calling on the getPlacesByLatLng endpoint passing in the 'hotels' as place type, coordinates (longitude and latitude), a limit parameter and source for error handling
     getPlacesByLatLng(
       "hotels",
       coordinates.lat,
@@ -90,9 +87,10 @@ const HotelsList = () => {
     )
       .then((data) => {
         if (isMounted) {
+          // if (data.length <= 0) data = MockHotels;
+
           // Data is received anf set to 'hotels' state filtering out items without the 'name' property
           setHotels(data.filter((hotel) => hotel.name));
-          // if (data.length <= 0) data = MockHotels;
           // Loading state set back to false to stop loading
           setIsLoading(false);
         }
