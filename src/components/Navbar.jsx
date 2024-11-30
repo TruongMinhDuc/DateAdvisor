@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from '../img/logo.svg';
+import logo from '../img/heart-logo.svg';
 import { Link } from "react-router-dom";
 
 const Navbar = ({ sticky, border }) => {
@@ -16,11 +16,20 @@ const Navbar = ({ sticky, border }) => {
         <nav className={`${(scrolled || border) && 'border-b-2'} ${sticky && 'sticky top-0' } relative z-50 transition duration-700 bg-white`}>
             {/* element gets a shadow when menu is toggled -> when menu is clicked and on display, the element gets a shadow  */}
             <div className={`container mx-auto w-full flex justify-between items-center px-4 py-3 ${ isMenuToggled && 'shadow-md' }`}>
-                {/* Logo */}
+                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '6px'}}>
+
+             
                 <Link to={"/"}>
-                    <img src={logo} alt="Traveladvisor" className="w-[180px] sm:w-[200px] md:w-[250px]"/>
+                    
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', borderWidth: '2px', padding: '2px', borderColor: '#000', borderRadius: '100px'}}>
+                        <div style={{backgroundColor: '#ff3377', borderRadius: '100px', padding: '4px'}}>
+                            <img src={logo} alt="Traveladvisor" style={{height: '30px', width: '30px'}}/>
+                        </div>
+                    </div>
                 </Link>
-                {/*  */}
+         
+                    <p style={{fontSize: '20px', fontWeight: '500'}}>Dateadvisor</p>
+                </div>
                 
                 <ul className="hidden mmd:flex space-x-1">
                     {/* Link to Hotels Route */}
@@ -34,7 +43,6 @@ const Navbar = ({ sticky, border }) => {
                             </p> 
                         </li>
                     </Link>
-                    {/* --- */}
 
                     {/* Link to Restauranst Route */}
                     <Link to={"/restaurants"}>

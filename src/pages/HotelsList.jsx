@@ -44,7 +44,7 @@ const HotelsList = () => {
         adults: 1, 
         hotel_class: '4, 5',
         checkin: moment(new Date()).format("YYYY-MM-DD"),
-        checkout: '',
+        checkout: moment(new Date()).format("YYYY-MM-DD"),
         nights: 1,
         pricesmax: '',
         pricesmin: ''
@@ -58,6 +58,8 @@ const HotelsList = () => {
 
     // Effect to fetch places for component from the getPlacesByLatLng endpoint and effect is reran on change of 'coordinates' or 'filterParams' state values
     useEffect(() => {
+        let isMounted = true; 
+
         let source = axios.CancelToken.source()
 
         // Loading state is set to true while data is being fetched from endpoint
@@ -66,17 +68,26 @@ const HotelsList = () => {
         // Calling on the getPlacesByLatLng endpoint passing in the 'hotels' as place type, coordinates (longitude and latitude), a limit parameter and source for error handling
         getPlacesByLatLng('hotels', coordinates.lat, coordinates.lng, {...filterParams}, source)
             .then(data => {
-                // Data is received anf set to 'hotels' state filtering out items without the 'name' property
-                setHotels(data.filter(item => item.name));
+                if (isMounted) {
 
-                // Loading state set back to false to stop loading
-                setIsLoading(false);
-            })
+                    // Data is received anf set to 'hotels' state filtering out items without the 'name' property
+                    setHotels(data.filter(item => item.name));
+    
+                    // Loading state set back to false to stop loading
+                    setIsLoading(false);
+                }
+            }).catch(err => {
+                if (isMounted) {
+                    setIsLoading(false);
+                    console.error(err);
+                }
+            });
 
         // Effect Cleanup
         return () => {
-            source.cancel()
-        }
+            isMounted = false; // Set flag to false when the component unmounts
+            source.cancel();
+        };
     }, [coordinates, filterParams])
 
     return ( 
@@ -142,7 +153,7 @@ const HotelsList = () => {
                                         ...prevState, 
 
                                         // new form input value set to the 'checkin' state property
-                                        checkin: e.target.value,
+                                        checkout: e.target.value,
 
                                         // Difference between 'checkout' property and 'checkin' property is calculated with resulting value is saved to 'nights'
                                         // ...the individual properties are formatted using 'momentJs' that also does the difference evaluation with the value type coverted into a number using the 'Number' objecct 

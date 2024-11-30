@@ -3,7 +3,7 @@ import icon from '../img/icon.svg';
 const Footer = () => {
     return ( 
         <div className="bg-[#faf1ed]">
-            <div className="container mx-auto px-4 py-6">
+            {/* <div className="container mx-auto px-4 py-6">
                 <div className="grid grid-cols-12 text-gray-800">
                     <div className="col-span-12 lg:col-span-8 space-y-2 text-dark">
                         <div className="flex space-x-3">
@@ -37,7 +37,7 @@ const Footer = () => {
 
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
      );
 }

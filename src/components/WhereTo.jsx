@@ -1,5 +1,6 @@
 import { useState } from "react";
 import wheretoImg from '../img/whereto.webp';
+import searchImg from '../img/Cafe Header.jpg';
 import { useHistory } from "react-router-dom";
 
 const WhereTo = () => {
@@ -18,7 +19,7 @@ const WhereTo = () => {
 
     return ( 
         <div className="container mx-auto p-4 relative flex justify-center items-center">
-            <img src={wheretoImg} alt="BG" 
+            <img src={searchImg} alt="BG" 
                 className="object-cover md:w-full md:h-[22em] h-[20em]" 
             />
             {/* Search Input Field */}
