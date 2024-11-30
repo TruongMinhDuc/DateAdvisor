@@ -59,7 +59,7 @@ const HotelsList = () => {
     adults: 1,
     hotel_class: "4, 5",
     checkin: moment(new Date()).format("YYYY-MM-DD"),
-    checkout: moment(new Date()).format("YYYY-MM-DD"),
+    checkout: moment(new Date() + 1).format("YYYY-MM-DD"),
     nights: 1,
     pricesmax: "",
     pricesmin: "",
@@ -90,14 +90,9 @@ const HotelsList = () => {
     )
       .then((data) => {
         if (isMounted) {
-          // if (data.length <= 0) data = MockHotels;
-
-          setHotels(data.filter((item) => item.name));
-          console.log(
-            "DATA HT: ",
-            JSON.stringify(data.filter((item) => item.name))
-          );
-
+          // Data is received anf set to 'hotels' state filtering out items without the 'name' property
+          setHotels(data.filter((hotel) => hotel.name));
+          if (data.length <= 0) data = MockHotels;
           // Loading state set back to false to stop loading
           setIsLoading(false);
         }

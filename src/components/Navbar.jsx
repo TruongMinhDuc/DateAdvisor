@@ -16,15 +16,13 @@ const Navbar = ({ sticky, border }) => {
   return (
     // Navbar adds scrolled class to nav element when window's scroll down is greater than 20
     <nav
-      className={`${(scrolled || border) && "border-b-2"} ${
-        sticky && "sticky top-0"
-      } relative z-50 transition duration-700 bg-white`}
+      className={`${(scrolled || border) && "border-b-2"} ${sticky && "sticky top-0"
+        } relative z-50 transition duration-700 bg-white`}
     >
       {/* element gets a shadow when menu is toggled -> when menu is clicked and on display, the element gets a shadow  */}
       <div
-        className={`container mx-auto w-full flex justify-between items-center px-4 py-3 ${
-          isMenuToggled && "shadow-md"
-        }`}
+        className={`container mx-auto w-full flex justify-between items-center px-4 py-3 ${isMenuToggled && "shadow-md"
+          }`}
       >
         <div
           style={{

@@ -7,19 +7,19 @@ import { SearchResultLoader } from "../components/loaders";
 
 const SearchResult = () => {
     const history = useHistory();
-    
+
     // Destructuring the 'search' property from the useLocation() hook object
     const { search } = useLocation();
-    
+
     // Instantiating a URLSearchParams passing on the search property
     const queryParams = new URLSearchParams(search);
-    
+
     // Setting the 'location' property from derived search param to a new 'location' state
     const [location, setLocation] = useState(queryParams.get("location"));
 
     // Search Term state for form input field with current 'location; state value as default 
     const [term, setTerm] = useState(location);
-    
+
     // Search Result State
     const [searchResults, setSearchResults] = useState();
 
@@ -42,7 +42,7 @@ const SearchResult = () => {
             .then(data => {
                 // Search Result data is received and set to the 'searchResult' state
                 setSearchResults(data);
-                
+
                 // Setting Loading state back to false to stop loading
                 setIsLoading(false);
             }).catch(err => console.log(err))
@@ -65,12 +65,12 @@ const SearchResult = () => {
         history.push(`/search?location=${term}`);
     }
 
-    return (    
+    return (
         <>
             {/* Navbar with Border */}
             <Navbar border />
             {/* --- */}
-            
+
             <div className="relative">
                 {/* Search Form */}
                 <div className={`bg-white sticky-top ${scrolled && 'shadow'} z-30`}>
@@ -79,7 +79,7 @@ const SearchResult = () => {
                         <div className="relative w-full">
                             {/* Search Input Field */}
                             <input type="text"
-                                className="w-full border rounded-sm pl-10 pr-4 py-2 focus:text-gray-700 focus:bg-white focus:border-secondary focus:outline-none"  
+                                className="w-full border rounded-sm pl-10 pr-4 py-2 focus:text-gray-700 focus:bg-white focus:border-secondary focus:outline-none"
                                 // Search Term value
                                 value={term}
 
@@ -104,7 +104,7 @@ const SearchResult = () => {
                 {/* --- */}
 
                 {/* Search result Area */}
-                { !searchResults || isLoading ? (
+                {!searchResults || isLoading ? (
                     // If there are not items in 'searchResults' state or the 'isLoading' state is true - Then the Search result loader below is render
                     <SearchResultLoader />
                 ) : (
@@ -115,17 +115,17 @@ const SearchResult = () => {
                             <div className="border shadow">
                                 <div className="border-b p-4">
                                     <h2 className="font-semibold text-xl">
-                                        Top result match "{ location }"
+                                        Top result match "{location}"
                                     </h2>
                                 </div>
-                                
+
                                 {/* Result Object rendered here only if 'is_top_result' property is true */}
                                 <div>
                                     {/* Mapping through Search result - filtering in only results that 'is_top_result' */}
-                                    { searchResults?.filter(result => result?.is_top_result).map((result, i)  => (
+                                    {searchResults?.filter(result => result?.is_top_result).map((result, i) => (
                                         // Rendering a SearchResultCard component for each search result
                                         <SearchResultCard key={i} result={result} />
-                                    )) }
+                                    ))}
                                     {/* --- */}
                                 </div>
                                 {/* --- */}
@@ -138,17 +138,17 @@ const SearchResult = () => {
                             <div className="border shadow">
                                 <div className="border-b p-4">
                                     <h2 className="font-semibold text-xl">
-                                        More results matching "{ location }"
+                                        More results matching "{location}"
                                     </h2>
                                 </div>
-                                
+
                                 {/* Result Object rendered here only if 'is_top_result' property is false */}
                                 <div>
                                     {/* Mapping through Search result - filtering in only results that is not top result */}
-                                    { searchResults?.filter(result => !result?.is_top_result).map((result, i)  => (
+                                    {searchResults?.filter(result => !result?.is_top_result).map((result, i) => (
                                         // Rendering a SearchResultCard component for each search result
-                                       <SearchResultCard key={i} result={result} />
-                                    )) }
+                                        <SearchResultCard key={i} result={result} />
+                                    ))}
                                     {/* --- */}
                                 </div>
                                 {/* --- */}
@@ -156,7 +156,7 @@ const SearchResult = () => {
                         </div>
                         {/* --- */}
                     </>
-                ) }
+                )}
 
             </div>
 
@@ -164,7 +164,7 @@ const SearchResult = () => {
             <Footer />
             {/* --- */}
         </>
-     );
+    );
 }
- 
+
 export default SearchResult;

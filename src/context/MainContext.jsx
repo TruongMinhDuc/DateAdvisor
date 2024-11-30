@@ -19,9 +19,9 @@ export const MainContextProvider = ({ children }) => {
     // Get Current User Location
     useEffect(() => {
         // Getting the current position corrdinates from browsers naviagtor sensor
-        navigator.geolocation.getCurrentPosition(({ coords: {latitude, longitude} }) => {
+        navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
             // setting coordinates latitude and longitude to the state
-            setCoordinates({lat: latitude, lng: longitude})
+            setCoordinates({ lat: latitude, lng: longitude })
         })
     }, [])
 
@@ -77,7 +77,7 @@ export const MainContextProvider = ({ children }) => {
                         // Response 'data' received and set to attractions state filtering out data without 'name' property, 'location_id' === 0
                         setAttractions(data?.filter(attraction => attraction.name && attraction.location_id != 0 && attraction.rating > 0))
                     });
-                
+
                 // Calling on getPlacesByLatLng for 'restaurants' type, passing in parameter for 'limits' & 'min_rating'; and 'source' for error handling and effect cleanup
                 getPlacesByLatLng('hotels', coordinates.lat, coordinates.lng, { limit: 20, min_rating: 4 }, source)
                     .then(data => {
@@ -94,7 +94,7 @@ export const MainContextProvider = ({ children }) => {
             source.cancel()
         }
     }, [coordinates]);
-    
+
     // Get Filtered Places by Rating
     useEffect(() => {
         // Places filter by rating for Map view
@@ -106,7 +106,7 @@ export const MainContextProvider = ({ children }) => {
     return (
         // Passing State value through main context to children for access
         <MainContext.Provider value={{ places, setPlaces, coordinates, setCoordinates, bounds, setBounds, rating, setRating, type, setType, isLoading, setIsLoading, filteredPlaces, attractions, restaurants, hotels }}>
-            { children }
+            {children}
         </MainContext.Provider>
     )
 }

@@ -32,7 +32,7 @@ const HotelCard = ({ hotel }) => {
               src={
                 hotel?.hac_offers?.all_booking_offers?.length > 0
                   ? hotel?.hac_offers?.all_booking_offers[0]?.logo ||
-                    "hotel.hac_offers.offers[0].provider_display_name"
+                  "hotel.hac_offers.offers[0].provider_display_name"
                   : hotel?.hac_offers?.offers[0]?.logo || ""
               }
               alt=""
@@ -49,7 +49,7 @@ const HotelCard = ({ hotel }) => {
               <span className="flex items-center mmd:hidden text-xs">
                 {hotel?.hac_offers?.all_booking_offers?.length > 0
                   ? hotel?.hac_offers?.all_booking_offers[0]
-                      ?.provider_display_name
+                    ?.provider_display_name
                   : hotel?.hac_offers?.offers[0]?.provider_display_name}
                 <svg
                   className="h-3 w-3"
@@ -129,37 +129,37 @@ const HotelCard = ({ hotel }) => {
               4,
               hotel?.hac_offers?.offers?.length
             ).length > 1 && (
-              <>
-                <div className="border-b" />
-                <p
-                  className="text-[11px] font-bold cursor-pointer"
-                  onClick={() =>
-                    dealToggle ? setDealToggle(false) : setDealToggle(true)
-                  }
-                >
-                  View all other{" "}
-                  {
-                    hotel?.hac_offers?.offers?.slice(
-                      3,
-                      hotel?.hac_offers?.offers?.length
-                    ).length
-                  }{" "}
-                  deals
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 inline"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
+                <>
+                  <div className="border-b" />
+                  <p
+                    className="text-[11px] font-bold cursor-pointer"
+                    onClick={() =>
+                      dealToggle ? setDealToggle(false) : setDealToggle(true)
+                    }
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </p>
-              </>
-            )}
+                    View all other{" "}
+                    {
+                      hotel?.hac_offers?.offers?.slice(
+                        3,
+                        hotel?.hac_offers?.offers?.length
+                      ).length
+                    }{" "}
+                    deals
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 inline"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </p>
+                </>
+              )}
             {/* --- */}
 
             <div className="absolute -bottom-4/5 -left-2 z-20 hidden mmd:block">

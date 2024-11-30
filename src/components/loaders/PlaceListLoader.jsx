@@ -1,5 +1,5 @@
 const PlaceListLoader = () => {
-    return ( 
+    return (
         <div className="container">
             <div className="grid grid-cols-12 items-center animate-pulse gap-3 my-2 border border-gray-100 shadow">
                 <div className="col-span-12 md:col-span-4 h-[180px] bg-gray-300" />
@@ -98,7 +98,7 @@ const PlaceListLoader = () => {
                 </div>
             </div>
         </div>
-     );
+    );
 }
- 
+
 export default PlaceListLoader;
