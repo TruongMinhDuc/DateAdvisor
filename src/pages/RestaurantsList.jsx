@@ -11,7 +11,7 @@ import map from "../img/map.png";
 const RestaurantsList = () => {
     // Destructuring all Neccesary state from main Context
     const { coordinates, isLoading, setIsLoading, setType } = useContext(MainContext);
-    const [restaurants, setRestaurants ] = useState();
+    const [restaurants, setRestaurants] = useState();
     const history = useHistory();
 
     // Effect to fetch list of place for component from the getPlacesByLatLng endpoint, effect reran on change of 'coordinates'
@@ -37,7 +37,7 @@ const RestaurantsList = () => {
         }
     }, [coordinates])
 
-    return ( 
+    return (
         <>
             {/* Navbar with Border */}
             <Navbar border />
@@ -61,7 +61,7 @@ const RestaurantsList = () => {
                                         onClick={() => {
                                             setType('restaurants');
                                             history.push("/map");
-                                        }}    
+                                        }}
                                     >
                                         <p className="font-semibold flex items-center text-sm">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -78,10 +78,10 @@ const RestaurantsList = () => {
 
                     {/* Restaurants List */}
                     <div className="lg:col-span-9">
-                        { !restaurants || isLoading ? (
+                        {!restaurants || isLoading ? (
                             // Renders Loading component if 'restaurants' state has no value or 'isLoading' state is true
                             <PlaceListLoader />
-                        ) : ( 
+                        ) : (
                             // Renders Section If 'restuarants' list is ready or data fetching is not in loading state
                             // ... Mapping through list of restaurants object 
                             restaurants?.map((restaurant, i) => (
@@ -92,7 +92,7 @@ const RestaurantsList = () => {
                                         {/* Link that routes to the placeDetails route with the current restaurant 'location_id' passed into the url parameter */}
                                         <Link to={`restaurants/${restaurant?.location_id}`}>
                                             {/* Attraction Image - display if Image is found in result object, else a default image is displayed as fallback */}
-                                            <img src={ restaurant?.photo ? restaurant?.photo?.images?.large?.url : 'https://media-cdn.tripadvisor.com/media/photo-s/22/d9/7b/42/this-image-has-been-removed.jpg'} alt={restaurant?.name} 
+                                            <img src={restaurant?.photo ? restaurant?.photo?.images?.large?.url : 'https://media-cdn.tripadvisor.com/media/photo-s/22/d9/7b/42/this-image-has-been-removed.jpg'} alt={restaurant?.name}
                                                 className="w-full h-full object-cover"
                                             />
                                             {/* --- */}
@@ -100,36 +100,36 @@ const RestaurantsList = () => {
                                         {/* --- */}
                                     </div>
                                     {/* /Restaurant Image */}
-                                    
+
                                     {/* Restaurant Details */}
                                     <div className="col-span-12 md:col-span-8 px-2 md:px-4 py-2">
                                         {/* Restaurant Name */}
                                         <h2 className="font-semibold text-lg md:text-xl">
-                                            { restaurant?.name }
+                                            {restaurant?.name}
                                         </h2>
                                         {/* --- */}
 
                                         <p className="flex items-center my-1">
                                             {/* Restaurant Rating with 'rating' property passed to generate a React Stars Rating element - displays only if found in result object  */}
                                             <span className="flex items-center mr-1">
-                                                <ReactStarsRating 
-                                                    value={Number(restaurant?.rating)} 
-                                                    className="flex mr-2" size={20} 
-                                                    isEdit={false} 
-                                                    primaryColor="#00afef" 
-                                                    secondaryColor="#e5e7eb" 
+                                                <ReactStarsRating
+                                                    value={Number(restaurant?.rating)}
+                                                    className="flex mr-2" size={20}
+                                                    isEdit={false}
+                                                    primaryColor="#00afef"
+                                                    secondaryColor="#e5e7eb"
                                                 />
-                                            </span> 
+                                            </span>
                                             {/* --- */}
 
                                             {/* Restaurant Reviews Count */}
                                             <span className="text-sm mr-3">
-                                                { restaurant?.num_reviews } Reviews
+                                                {restaurant?.num_reviews} Reviews
                                             </span>
                                             {/* --- */}
 
                                             {/* Restaurant Open or Close Button - Displayed with specific colors based on status */}
-                                            { (!restaurant?.isClose && restaurant?.open_now_text)  && (
+                                            {(!restaurant?.isClose && restaurant?.open_now_text) && (
                                                 // If Place isClose - a red button is diplayed else a green burron is diplayed - this is possible with the differnce in classes as seen below
                                                 <button className={`${restaurant?.open_now_text?.includes('Closed') ? 'bg-red-400' : 'bg-green-400'} rounded-full py-1 px-2 md:px-3 my-1 shadow-md`}>
                                                     <p className="text-sm flex items-center">
@@ -138,39 +138,39 @@ const RestaurantsList = () => {
                                                         </svg>
 
                                                         {/* Place Close/Open Status Diplay with an Open now fallback just incase no text is found in object */}
-                                                        { restaurant?.open_now_text || 'Open Now' }
+                                                        {restaurant?.open_now_text || 'Open Now'}
                                                         {/* --- */}
                                                     </p>
                                                 </button>
-                                            ) }
+                                            )}
                                         </p>
 
                                         {/* Cuisines/Special Diets - Section display only if either cusine or diet restriction is found in place details */}
-                                        { (restaurant?.cuisine?.length > 0) && (
+                                        {(restaurant?.cuisine?.length > 0) && (
                                             <p className="text-xs my-2">
                                                 {/* Mapping through list of cuisines */}
                                                 {restaurant?.cuisine?.map((item, i) => (
                                                     <span key={i} className="bg-gray-300 rounded-full inline-block px-2 py-1 mr-1 mb-1">
-                                                        { item?.name }
+                                                        {item?.name}
                                                     </span>
                                                 ))}
                                                 {/* --- */}
 
                                                 {/* Restaurant Price Level - Displays only if found */}
-                                                {  restaurant?.price_level && ( 
+                                                {restaurant?.price_level && (
                                                     <span>
                                                         ~ {restaurant?.price_level}
-                                                    </span> 
+                                                    </span>
                                                 )}
                                                 {/* --- */}
                                             </p>
-                                        ) }
+                                        )}
                                         {/* --- */}
 
                                         {/* Restaurant Review Snippet - Render section if 'reviews' is found on restaurant object, if 'reviews' first item has value that is not 'NULL' and if 'reviews' length is greater than 0 */}
-                                        {(restaurant?.reviews && restaurant?.reviews[0] !== null && restaurant?.reviews?.length > 0) 
+                                        {(restaurant?.reviews && restaurant?.reviews[0] !== null && restaurant?.reviews?.length > 0)
                                             // Mapping through the list of review snippet
-                                            && ( restaurant?.reviews?.map((review, i) => (                                
+                                            && (restaurant?.reviews?.map((review, i) => (
                                                 <div key={i}>
                                                     <div className="h-[1px] bg-gray-300 my-3" />
 
@@ -178,15 +178,15 @@ const RestaurantsList = () => {
                                                         <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                                                             <path d="M2 11h5l-3 5h4l3-5V2H2zM13 2v9h5l-3 5h4l3-5V2z"></path>
                                                         </svg>
-                                                        “{ review?.title }”
+                                                        “{review?.title}”
                                                     </p>
                                                 </div>
-                                        ))) }
+                                            )))}
                                     </div>
                                     {/* /Restaurant Details */}
                                 </div>
                             ))
-                        ) }
+                        )}
                     </div>
                     {/* / Restaurants List */}
                 </div>
@@ -197,7 +197,7 @@ const RestaurantsList = () => {
             <Footer />
             {/* --- */}
         </>
-     );
+    );
 }
- 
+
 export default RestaurantsList;

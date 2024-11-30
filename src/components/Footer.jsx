@@ -1,7 +1,7 @@
 import icon from '../img/icon.svg';
 
 const Footer = () => {
-    return ( 
+    return (
         <div className="bg-[#faf1ed]">
             {/* <div className="container mx-auto px-4 py-6">
                 <div className="grid grid-cols-12 text-gray-800">
@@ -39,7 +39,7 @@ const Footer = () => {
                 </div>
             </div> */}
         </div>
-     );
+    );
 }
- 
+
 export default Footer;

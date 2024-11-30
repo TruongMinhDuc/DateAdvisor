@@ -28,11 +28,11 @@ const responsive = {
 
 const ToVisit = () => {
     // Bringing the Attraction state from the Main context and saved into variable name 'places'
-    const { attractions: places  } = useContext(MainContext);
-    
-    return ( 
+    const { attractions: places } = useContext(MainContext);
+
+    return (
         <>
-            { !places || places?.length < 1 ? (
+            {!places || places?.length < 1 ? (
                 // if places list is empty, render a Loader
                 <PlaceCardLoader />
             ) : (
@@ -47,10 +47,10 @@ const ToVisit = () => {
 
                     {/* OwlCarousel to Render Places in Carousel */}
                     <div className="relative -left-[20px]">
-                        <OwlCarousel nav stagePadding={20} 
-                            navClass={["navStyle", "navStyle"]} 
-                            navContainerClass="navContainerStyle" 
-                            responsive={responsive} 
+                        <OwlCarousel nav stagePadding={20}
+                            navClass={["navStyle", "navStyle"]}
+                            navContainerClass="navContainerStyle"
+                            responsive={responsive}
                             navText={[
                                 `<svg xmlns="http://www.w3.org/2000/svg" className="h-2 w-2" viewBox="0 0 20 20" fill="currentColor">
                                     <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
@@ -72,7 +72,7 @@ const ToVisit = () => {
                 </div>
             )}
         </>
-     );
+    );
 }
- 
+
 export default ToVisit;

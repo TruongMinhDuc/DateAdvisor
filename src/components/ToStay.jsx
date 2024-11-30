@@ -28,9 +28,9 @@ const responsive = {
 
 const ToStay = () => {
     // Bringing the hotels state from the Main context and saved into variable name 'places'
-    const { hotels: places  } = useContext(MainContext);
+    const { hotels: places } = useContext(MainContext);
 
-    return ( 
+    return (
         <>
             {!places || places?.length < 1 ? (
                 // if places list is empty, render a Loader
@@ -47,10 +47,10 @@ const ToStay = () => {
 
                     {/* OwlCarousel to Render Places in Carousel */}
                     <div className="relative -left-[20px]">
-                        <OwlCarousel nav stagePadding={20} 
-                            navClass={["navStyle", "navStyle"]} 
-                            navContainerClass="navContainerStyle" 
-                            responsive={responsive} 
+                        <OwlCarousel nav stagePadding={20}
+                            navClass={["navStyle", "navStyle"]}
+                            navContainerClass="navContainerStyle"
+                            responsive={responsive}
                             slideBy={4}
                             navText={[
                                 `<svg xmlns="http://www.w3.org/2000/svg" className="h-2 w-2" viewBox="0 0 20 20" fill="currentColor">
@@ -73,7 +73,7 @@ const ToStay = () => {
                 </div>
             )}
         </>
-     );
+    );
 }
- 
+
 export default ToStay;
