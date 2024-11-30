@@ -90,8 +90,7 @@ const HotelsList = () => {
     )
       .then((data) => {
         if (isMounted) {
-          // Data is received anf set to 'hotels' state filtering out items without the 'name' property
-          if (data.length <= 0) data = MockHotels;
+          // if (data.length <= 0) data = MockHotels;
 
           setHotels(data.filter((item) => item.name));
           console.log(
