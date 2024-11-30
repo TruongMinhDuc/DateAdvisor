@@ -28,7 +28,7 @@ const MapView = () => {
       </div>
       <div className="h-[50vh] md:h-full w-full md:w-[65%] lg:w-[79%] relative">
         {/* Map Header Component, with setCoordinate State passed in as props */}
-        <Header setCoordinates={setCoordinates} />
+        {/* <Header setCoordinates={setCoordinates} /> */}
         {/* --- */}
 
         {/* Map Component with 'setBounds', 'setCoordinates', 'coordinates' and either 'filteredPlaces' or 'places' states passed in as props to component  */}
