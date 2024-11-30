@@ -7,6 +7,7 @@ import map from "../img/map.png";
 import moment from "moment";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { MockHotels } from "../../src/mock-data";
 
 // Custom Input Field Component
 const Input = ({
@@ -90,6 +91,8 @@ const HotelsList = () => {
       .then((data) => {
         if (isMounted) {
           // Data is received anf set to 'hotels' state filtering out items without the 'name' property
+          if (data.length <= 0) data = MockHotels;
+
           setHotels(data.filter((item) => item.name));
           console.log(
             "DATA HT: ",
