@@ -8,6 +8,7 @@ import moment from "moment";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
+// Custom Input Field Component
 const Input = ({
   type,
   name,
@@ -19,7 +20,9 @@ const Input = ({
   moreProps,
 }) => (
   <input
+    // Input type
     type={type}
+    // Input Name
     name={name}
     // Value - Takes value of 'valueInLine' prop as value else takes the 'value' prop as value
     value={valueInline ? valueInline : value[name]}
@@ -27,7 +30,9 @@ const Input = ({
     onChange={
       handleChangeInline ? handleChangeInline : (e) => handleChange(e, name)
     }
+    // Class names for styling
     className={classProps}
+    // All other props are desctruction into the component
     {...moreProps}
   />
 );
@@ -111,7 +116,9 @@ const HotelsList = () => {
 
   return (
     <>
+      {/* Navigation Bar with Border */}
       <Navbar border />
+      {/* --- */}
 
       <div className="pb-4">
         <div className="container mx-auto text-center my-10">
@@ -120,6 +127,7 @@ const HotelsList = () => {
           </h1>
         </div>
 
+        {/* Check In/Out and Guests Filter */}
         <div
           className={`${
             scrolled && "border-b"
@@ -163,7 +171,9 @@ const HotelsList = () => {
                 // CSS Classes Props
                 classProps="w-full rounded border-y border-r shadow px-4 py-2 border-l-8 border-l-green-600 focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
               />
+              {/* --- */}
             </div>
+            {/* --- */}
 
             {/* Check Out */}
             <div className="w-full relative">

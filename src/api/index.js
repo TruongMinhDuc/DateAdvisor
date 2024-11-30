@@ -57,8 +57,30 @@ export const getPlacesByLatLng = async (type, lat, lng, params, source) => {
       { cancelToken: source.token }
     );
 
+    if (type == "hotels") {
+      const res = await axios.get(
+        `https://travel-advisor.p.rapidapi.com/${type}/list-by-latlng`,
+        {
+          params: {
+            latitude: lat,
+            longitude: lng,
+            ...params,
+          },
+          headers: {
+            "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
+            "X-RapidAPI-Key": import.meta.env.VITE_TRAVEL_API_KEY,
+          },
+        },
+        { cancelToken: source.token }
+      );
+
+      console.log("res: ", JSON.stringify(res));
+    }
+
     // Data is returned once resolved
-    console.log(data);
+    // if (type == "hotels") {
+    console.log("data: ", data);
+    // }
     return data;
   } catch (error) {
     if (axios.isCancel(error)) {
