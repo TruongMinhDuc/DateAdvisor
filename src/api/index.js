@@ -36,7 +36,7 @@ export const getPlacesByBounds = async (type, sw, ne, source) => {
 
 // Get Places by Latitude and longitude, receives 'type', 'lat', 'lng', some 'params' and source for effect cleanup and error handling as parameter to endpoint call
 export const getPlacesByLatLng = async (type, lat, lng, params, source) => {
-  console.log("Type: ", JSON.stringify(type));
+  // console.log("Type: ", JSON.stringify(type));
 
   try {
     const {
@@ -79,7 +79,7 @@ export const getPlacesByLatLng = async (type, lat, lng, params, source) => {
 
     // Data is returned once resolved
     // if (type == "hotels") {
-    console.log("data: ", data);
+    // console.log("data: ", data);
     // }
     return data;
   } catch (error) {
