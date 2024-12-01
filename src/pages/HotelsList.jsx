@@ -71,6 +71,7 @@ const HotelsList = () => {
       .then((data) => {
         if (isMounted) {
           let tmpState = data.filter((hotel) => hotel.name);
+          // Filter distance
           if (maxDistance != null && maxDistance > 0) {
             tmpState = tmpState.filter(
               (item) => item.distance <= maxDistance / 1000
