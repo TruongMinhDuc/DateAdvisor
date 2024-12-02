@@ -59,7 +59,7 @@ export const getPlacesByLatLng = async (type, lat, lng, params, source) => {
 
     if (type == "hotels") {
       const res = await axios.get(
-        `https://travel-advisor.p.rapidapi.com/${type}/list-by-latlng`,
+        `https://travel-advisor.p.rapidapi.com/hotel-filters/list`,
         {
           params: {
             latitude: lat,
